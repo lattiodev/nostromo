@@ -1,0 +1,55 @@
+import { DynamicPayload } from "@qubic-lib/qubic-ts-library/dist/qubic-types/DynamicPayload";
+import { Long } from "@qubic-lib/qubic-ts-library/dist/qubic-types/Long";
+import { QubicTransaction } from "@qubic-lib/qubic-ts-library/dist/qubic-types/QubicTransaction";
+import { QubicDefinitions } from "@qubic-lib/qubic-ts-library/dist/QubicDefinitions";
+import { QubicHelper } from "@qubic-lib/qubic-ts-library/dist/qubicHelper";
+
+const qHelper = new QubicHelper();
+
+export const createTx = (sender: string, receiver: string, amount: number, tick: number) => {
+  const tx = new QubicTransaction()
+    .setSourcePublicKey(sender)
+    .setDestinationPublicKey(receiver)
+    .setAmount(new Long(amount))
+    .setTick(tick);
+  return tx;
+};
+
+export const createSCTx = async (
+  sourceID: string,
+  contractIndex: number,
+  inputType: number,
+  inputSize: number,
+  amount: number,
+  tick: number,
+  payload?: DynamicPayload | Uint8Array,
+) => {
+  try {
+    const destinationPublicKey = new Uint8Array(QubicDefinitions.PUBLIC_KEY_LENGTH);
+    destinationPublicKey.fill(0);
+    destinationPublicKey[0] = contractIndex;
+
+    const tx = new QubicTransaction()
+      .setSourcePublicKey(sourceID)
+      .setDestinationPublicKey(await qHelper.getIdentity(destinationPublicKey))
+      .setAmount(amount)
+      .setTick(tick)
+      .setInputType(inputType)
+      .setInputSize(inputSize);
+
+    if (payload) {
+      if (payload instanceof DynamicPayload) {
+        tx.setPayload(payload);
+      } else {
+        // Handle raw Uint8Array payload
+        const dynamicPayload = new DynamicPayload(payload.length);
+        dynamicPayload.setPayload(payload);
+        tx.setPayload(dynamicPayload);
+      }
+    }
+    return tx;
+  } catch (error) {
+    console.error("Error signing transaction:", error);
+    return new QubicTransaction();
+  }
+};

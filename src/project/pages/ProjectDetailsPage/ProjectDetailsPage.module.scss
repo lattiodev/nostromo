@@ -1,0 +1,37 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+}
+
+.container {
+  @include pageMargin();
+  gap: 82px;
+  position: relative;
+  z-index: 3;
+}
+
+.grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr;
+  place-content: start;
+
+  &.labels {
+    grid-template-columns: 1fr;
+    padding: 42px !important;
+    width: 100%;
+
+    @include respond-to(mobile) {
+      padding: 22px !important;
+    }
+  }
+
+  &.two {
+    grid-template-columns: 1fr 1fr;
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr; 
+    }
+  }
+}

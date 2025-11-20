@@ -1,0 +1,38 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+
+  &.two {
+    grid-template-columns: 0fr 1fr;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 34px;
+    height: 34px;
+    color: $green-03;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+
+  span {
+    white-space: nowrap;
+    
+    @include respond-to(mobile) {
+      white-space: inherit;
+    }
+  }
+}
+
+.label {
+  color: $green-03;
+}

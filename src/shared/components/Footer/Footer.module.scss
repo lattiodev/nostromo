@@ -1,0 +1,81 @@
+.footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 30px 80px;
+  background: linear-gradient(0deg, #0d1803 0%, rgba(0, 0, 0, 0.7) 100%);
+  gap: 12px;
+  position: relative;
+  color: #C7D2BE;
+  z-index: 12;
+
+  @include respond-to(mobile) {
+    padding: 30px 12px;
+    gap: 42px;
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer > :nth-child(3) {
+  place-self: center end;
+  
+  @include respond-to(mobile) {
+    place-self: center;
+    display: none;
+  } 
+}
+
+.footer > :nth-child(2) {
+  place-self: center;
+}
+
+.footer > :nth-child(1) {
+  place-self: center start;
+
+  @include respond-to(mobile) {
+    place-self: center;
+    display: none;
+  } 
+
+}
+
+.brand {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logotype {
+  filter: grayscale(100%);
+  opacity: 1;
+
+  @include crtAnimation()
+}
+
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  &.column {
+    flex-direction: column;
+  }
+
+  a {
+    color: #649C30;
+
+    transition: color 0.3s linear;
+
+    &:hover {
+      color: #C7D2BE;
+    }
+  }
+
+  button {
+    color: #478911 !important;
+
+    &:hover {
+      color: #C7D2BE !important;
+    }
+  }
+}

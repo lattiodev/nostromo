@@ -1,0 +1,90 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 18px;
+  background: #11140d;
+  border: none;
+  border-radius: 8px;
+  outline: 1px solid #303429;
+  color: #fff;
+  font-size: 16px;
+
+  /* Remove the up and down arrows in input type number */
+  -moz-appearance: textfield;
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: 1px solid yellowgreen;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  transition: 120ms linear;
+
+  &.withIcon {
+    padding-left: 48px;
+  }
+
+  &.withError {
+    outline: 1px solid $red-03;
+  }
+}
+
+.inputContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+}
+
+.icon {
+  left: 16px;
+  top: 16px;
+  position: absolute;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $green-04;
+    transition: color 120ms linear;
+  }
+}
+
+.symbol {
+  background-color: #2e3625;
+  border-radius: 8px;
+  padding: 4px 12px;
+  color: $green-03;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 12px !important;
+  line-height: 24px !important;
+
+  position: absolute;
+  right: 8px;
+}
+
+.description {
+  color: $green-04;
+}
+
+.error {
+  color: $red-01;
+}

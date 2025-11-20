@@ -1,0 +1,10 @@
+.layout {
+  position: relative;
+  width: 100%;
+}
+
+.monitor {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}

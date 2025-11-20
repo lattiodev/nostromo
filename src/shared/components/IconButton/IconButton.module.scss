@@ -1,0 +1,74 @@
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 120ms linear;
+
+  &[disabled] {
+    cursor: default;
+  }
+}
+
+.small {
+  width: 42px;
+  height: 42px;
+  border-radius: 42px;
+
+  svg {
+    font-size: 42px;
+  }
+}
+
+.medium {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+
+  svg {
+    font-size: 22px;
+  }
+}
+
+.large {
+  width: 56px;
+  height: 56px;
+  border-radius: 56px;
+
+  svg {
+    font-size: 32px;
+  }
+}
+
+.solid {
+  background: $green-04;
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid $green-04;
+}
+
+.ghost {
+  background: transparent;
+  border: none;
+}
+
+.primary {
+  &.ghost {
+    color: $green-04;
+
+    &:not([disabled]) {
+      &:hover {
+        color: $green-03;
+        background: $green-06;
+      }
+
+      &:active {
+        color: $green-03;
+        background: $green-01;
+      }
+    }
+  }
+}

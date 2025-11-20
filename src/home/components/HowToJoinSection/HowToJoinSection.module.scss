@@ -1,0 +1,43 @@
+
+.layout {
+  display: grid;
+  place-items: center;
+  padding: 82px 0;
+  gap: 62px;
+
+  color: #8af827;
+
+  @include respond-to(mobile) {
+    padding: 62px 0;
+    gap: 42px;
+  }
+}
+
+.title {
+  color: #8af827;
+  position: relative;
+  user-select: none;
+
+  font-size: 20px;
+  line-height: 70px;
+
+  text-shadow: 2px 2px 2px #000000db;
+
+  @include title();
+  @include crtAnimation();
+}
+
+.field {
+  display: flex;
+  gap: 14px;
+  flex-direction: column; 
+  padding: 0 22px;
+}
+
+.description {
+  color: #C7D2BE;
+}
+
+.steps {
+  @include pageMargin();
+}

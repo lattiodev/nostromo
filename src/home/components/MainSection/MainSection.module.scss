@@ -1,0 +1,288 @@
+.layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  padding: 52px;
+
+  @include respond-to(mobile) {
+    padding: 76px 18px 0 18px;
+  }
+  
+  display: grid;
+  place-items: center;
+  align-items: self-end;
+  
+  @include space();
+}
+
+$planet-box-shadow: (
+  monday: (
+    color1: #c43c1b,
+    color2: #ff9696,
+    color3: #9d331c,
+  ),
+  tuesday: (
+    color1: rgba(234, 205, 199, 0.6),
+    color2: rgba(234, 205, 199, 0.6),
+    color3: #37281f,
+  ),
+  wednesday: (
+    color1: #d68e38,
+    color2: #ff9503,
+    color3: #897668,
+  ),
+  thursday: (
+    color1: rgb(255 255 255 / 60%),
+    color2: rgb(255 255 255 / 60%),
+    color3: rgb(227 227 227 / 60%),
+  ),
+  friday: (
+    color1: rgba(234, 205, 199, 0.6),
+    color2: rgba(234, 205, 199, 0.6),
+    color3: rgba(188, 143, 127, 0.6),
+  ),
+  saturday: (
+    color1: #182941,
+    color2: #21324b,
+    color3: #1c3345,
+  ),
+  sunday: (
+    color1: rgb(223, 146, 125),
+    color2: rgb(236, 172, 159),
+    color3: rgba(210, 121, 89, 0.6),
+  ),
+);
+
+@mixin planet-box-shadow($day) {
+  box-shadow: 0 -300px 150px black inset, 
+              0 0px 130px 40px map-get(map-get($planet-box-shadow, $day), color1) inset, 
+              0 0px 23px 4px map-get(map-get($planet-box-shadow, $day), color2) inset, 
+              0 -10px 130px map-get(map-get($planet-box-shadow, $day), color3);
+
+  @include respond-to(mobile) {
+    box-shadow: 0 -300px 150px black inset, 
+                0 0px 130px 40px map-get(map-get($planet-box-shadow, $day), color1) inset, 
+                0 0px 23px 4px map-get(map-get($planet-box-shadow, $day), color2) inset, 
+                0 -10px 130px map-get(map-get($planet-box-shadow, $day), color3);
+  }
+}
+
+.planet {
+  inset: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vw;
+  max-width: 700px;
+  max-height: 700px;
+  aspect-ratio: 1 / 1;
+
+  &.monday:after {
+    background: url(../../assets/images/mars.png);
+    @include planet-box-shadow(monday);
+  }
+  
+  &.tuesday:after {
+    background: url(../../assets/images/pluto.png);
+    @include planet-box-shadow(tuesday);
+  }
+
+  &.wednesday:after {
+    background: url(../../assets/images/venus.png);
+    @include planet-box-shadow(wednesday);
+  }
+
+  &.thursday:after {
+    background: url(../../assets/images/mercury.jpg);
+    @include planet-box-shadow(thursday);
+  }
+
+  &.friday:after {
+    background: url(../../assets/images/saturn.png);
+    @include planet-box-shadow(friday);
+  }
+
+  &.saturday:after {
+    background: url(../../assets/images/earth.png);
+    @include planet-box-shadow(saturday);
+  }
+
+  &.sunday:after {
+    background: url(../../assets/images/makemake.png);
+    @include planet-box-shadow(sunday);
+  }
+
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 800px;
+    position: absolute;
+    left: -36%;
+    top: -18%;
+
+    z-index: 1;
+    filter: blur(2px);
+    transform: rotate(120deg);
+    
+    @include respond-to(desktop) {
+      -webkit-animation: planet 120s 3.9s infinite linear;
+      animation: planet 120s 3.9s infinite linear;
+  
+      transition: transform 2.8s 0.23s cubic-bezier(0.33, 0, 0, 1), opacity 2s 0.8s, box-shadow 0s 0s;
+      background-size: 1140px 910px !important;
+    }
+  }
+
+}
+
+@keyframes planet {
+  0% {
+    background-position-y: 0px;
+  }
+  100% {
+      background-position-y: -1000px;
+  }
+}
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+
+@-webkit-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+
+@-moz-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+
+@-ms-keyframes move-clouds-back {
+  from {background-position: 0;}
+  to {background-position:10000px 0;}
+}
+
+
+.field, .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+.container {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  @include pageMargin();
+}
+
+
+.title {
+  color: #C7D2BE;
+  position: relative;
+  user-select: none;
+  font-size: 32px !important;
+  line-height: 70px !important;
+
+  @include title();
+
+  text-align: center;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8588235294), 0 0 22px #87b153;
+}
+
+.subtitle {
+  color: #C7D2BE;
+  position: relative;
+  user-select: none;
+  font-size: 24px !important;
+
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8588235294), 0 0 22px #87b153;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.starship {
+  padding-top: 42px;
+  max-width: 650px;
+  width: 100%;
+  margin-left: auto;
+
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.icon {
+  color: $white;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  animation: moveUpDown 1.5s infinite;
+  flex-direction: column;
+  gap: 12px;
+
+  @include crtAnimation();
+  
+  cursor: pointer;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.2;
+  }
+}

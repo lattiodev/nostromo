@@ -1,0 +1,206 @@
+// Speed of the stars animation in seconds
+$stars-speed: 4000s;
+
+// Color variables
+$black: #000; // Black color
+$white: #fff; // White color
+
+// Green color palette
+$green-01: #3d4c30; // Dark green
+$green-02: #66933e; // Medium green
+$green-03: #8af827; // Bright green
+$green-04: #C7D2BE; // Light green
+$green-05: #6cc31f; // Vivid green
+$green-06: rgb(42 53 30 / 80%); // Transparent dark green
+$green-07: #649c30; // Olive green
+$green-08: #111b08; // Very dark green
+
+// Red color palette
+$red-01: #932626; // Dark red
+$red-02: #c73636; // Medium red
+$red-03: #f82727; // Bright red
+$red-04: #d2bebe; // Light red
+$red-05: #c31f1f; // Vivid red
+$red-06: rgb(53 30 30 / 80%); // Transparent dark red
+$red-07: #9c3030; // Olive red
+$red-08: #1b0808; // Very dark red
+
+// Yellow color palette
+$yellow-01: #939326; // Dark yellow
+$yellow-02: #c7c736; // Medium yellow
+$yellow-03: #f8f827; // Bright yellow
+$yellow-04: #d2d2be; // Light yellow
+$yellow-05: #c3c31f; // Vivid yellow
+$yellow-06: rgb(30 30 30 / 80%); // Transparent dark yellow
+$yellow-07: #9c9c30; // Olive yellow
+$yellow-08: #1b1b08; // Very dark yellow
+
+$orange-03: #ffab38;
+
+// Breakpoints for responsive design
+$breakpoints: (
+  mobile: (
+    max: 767px, // Maximum width for mobile devices
+  ),
+  mobile-vertical: (
+    max: 599px, // Maximum width for vertical mobile devices
+  ),
+  mobile-horizontal: (
+    min: 600px, // Minimum width for horizontal mobile devices
+    max: 767px, // Maximum width for horizontal mobile devices
+  ),
+  tablet: (
+    min: 768px, // Minimum width for tablets
+    max: 1439px, // Maximum width for tablets
+  ),
+  tablet-vertical: (
+    min: 768px, // Minimum width for vertical tablets
+    max: 1023px, // Maximum width for vertical tablets
+  ),
+  tablet-horizontal: (
+    min: 1024px, // Minimum width for horizontal tablets
+    max: 1439px, // Maximum width for horizontal tablets
+  ),
+  desktop: (
+    min: 1440px, // Minimum width for desktop devices
+  ),
+);
+
+// Mixin for media queries based on breakpoints
+@mixin respond-to($breakpoint) {
+  $query: map-get($breakpoints, $breakpoint);
+
+  @if $query {
+    $min: map-get($query, min);
+    $max: map-get($query, max);
+
+    @if $min and $max {
+      @media (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @warn "No 'min' or 'max' defined for breakpoint `#{$breakpoint}`.";
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` is not defined in the breakpoints map.";
+  }
+}
+
+// Mixin for applying theme based on color scheme preference
+@mixin theme($scheme) {
+  @if $scheme == dark or $scheme == light {
+    @media (prefers-color-scheme: #{$scheme}) {
+      @content;
+    }
+  } @else {
+    @warn "Color scheme `#{$scheme}` is not valid. Use 'light' or 'dark'.";
+  }
+}
+
+// Mixin for setting font family and related properties
+@mixin fontFamily() {
+  font-family: "Aldrich", sans-serif !important;
+  font-weight: 400;
+
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// Mixin for CRT animation effect
+@mixin crtAnimation() {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 1) 50%);
+  mask-size: 100% 2px;
+}
+
+// Mixin for styling titles
+@mixin title() {
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  font-family: "Press Start 2P", serif !important;
+  text-transform: uppercase;
+}
+
+// Mixin for setting container margin and layout
+@mixin pageMargin() {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 22px;
+  width: 100%;
+
+  @include respond-to(mobile) {
+    padding: 0 12px;
+  }
+}
+
+// Mixin for space background animation
+@mixin space() {
+  &:after, &:before {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "";
+  }
+
+  &:after {
+    background: #000 url("../shared/assets/images/stars.png") repeat top center;
+    z-index: 0;
+    -moz-animation: move-clouds-back $stars-speed linear infinite;
+    -ms-animation: move-clouds-back $stars-speed linear infinite;
+    -o-animation: move-clouds-back $stars-speed linear infinite;
+    -webkit-animation: move-clouds-back $stars-speed linear infinite;
+    animation: move-clouds-back $stars-speed linear infinite;
+  }
+
+  &:before {
+    background: transparent url("../shared/assets/images/twinkling.png") repeat top center;
+    z-index: 1;
+
+    -moz-animation: move-twink-back $stars-speed linear infinite;
+    -ms-animation: move-twink-back $stars-speed linear infinite;
+    -o-animation: move-twink-back $stars-speed linear infinite;
+    -webkit-animation: move-twink-back $stars-speed linear infinite;
+    animation: move-twink-back $stars-speed linear infinite;
+  }
+}
+
+@mixin bottomLighting() {
+  position: relative;
+  
+  &:after, &:before {
+    content: "";
+    position: absolute;
+  }
+
+  &:after {
+    inset: 0;
+    background: radial-gradient(circle at bottom, rgb(23, 40, 8) -12%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &:before {
+    height: 1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(92 133 48 / 80%) 50%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+
+@mixin greenShine() {
+  text-shadow: 0 0 22px $green-03;
+}

@@ -1,0 +1,123 @@
+.heading {
+  &.xxlarge {
+    font-size: 52px;
+    line-height: 72px;
+    font-weight: 900;
+  }
+
+    &.xlarge {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: 700;
+  }
+
+  &.large {
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+
+  &.medium {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+
+  &.small {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  &.xsmall {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+}
+
+.label {
+  &.xxlarge {
+    font-size: 30px;
+    line-height: 42px;
+    font-weight: 600;
+  }
+
+  &.large {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  &.medium {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+
+  &.small {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+  }
+}
+
+.body {
+  &.xxlarge {
+    font-size: 30px;
+    line-height: 42px;
+  }
+
+  &.xlarge {
+    font-size: 26px;
+    line-height: 38px;
+  }
+
+
+  &.large {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  &.medium {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &.small {
+    font-size: 15px;
+    line-height: 26px;
+  }
+
+  &.xsmall {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+
+.button {
+  &.xxlarge {
+    font-size: 30px;
+    line-height: 42px;
+    font-weight: 600;
+  }
+
+  &.large {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  &.medium {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 12px;
+  }
+
+  &.small {
+    font-size: 14px;
+    line-height: 12px;
+    font-weight: 600;
+  }
+}

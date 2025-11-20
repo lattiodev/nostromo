@@ -1,0 +1,84 @@
+.layout {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  position: relative;
+  z-index: 6;
+  
+  @include respond-to(mobile) {
+    gap: 22px;
+    align-items: center;
+  }
+
+  @include respond-to(tablet-vertical) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 22px;
+  width: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.tab {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #C7D2BE;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+
+  &.green.active {
+    color: $green-03;
+  }
+
+  &.cyan.active {
+    color: #52ffb6;
+  }
+
+  .icon {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  &:hover {
+    color: $white;
+  }
+
+  white-space: nowrap;
+  user-select: none;
+  * {
+    transition: color 120ms linear;
+  }
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.text {
+  @include crtAnimation();
+
+}
+

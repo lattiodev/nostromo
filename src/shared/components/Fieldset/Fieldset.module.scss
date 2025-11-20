@@ -1,0 +1,61 @@
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: $white;
+  cursor: default;
+
+  background: linear-gradient(20deg, #0d1803 0%, rgba(0, 0, 0, 0.7) 100%);
+  border: 1px solid rgba(42, 53, 30, 0.8);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+
+  legend {
+    color: $green-03;
+    margin-left: 22px;
+    padding: 0 12px;
+
+    @include respond-to(mobile) {
+      margin-left: 8px;
+    }
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 34px;
+    gap: 32px;
+
+    @include respond-to(mobile) {
+      padding: 18px;
+    }
+  }
+}
+
+.warning {
+  background: linear-gradient(20deg, #181003 0%, rgba(0, 0, 0, 0.7) 100%);
+  border: 1px solid rgba(108, 78, 51, 0.8);
+
+  legend {
+    color: #ffd723;
+  }
+}
+
+.error {
+  background: linear-gradient(20deg, #180303 0%, rgba(0, 0, 0, 0.7) 100%);
+  border: 1px solid rgba(108, 51, 51, 0.8);
+
+  legend {
+    color: $red-03;
+  }
+}
+
+.white {
+  background: linear-gradient(20deg, #141414 0%, rgba(0, 0, 0, 0.7) 100%);
+  border: 1px solid rgba(49, 49, 49, 0.8);
+
+  legend {
+    color: $white;
+  }
+}

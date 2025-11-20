@@ -1,0 +1,26 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 42px;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  @include respond-to(tablet-vertical) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond-to(tablet-horizontal) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 82px 12px;
+}

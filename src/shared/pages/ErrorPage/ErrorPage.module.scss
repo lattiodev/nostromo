@@ -1,0 +1,44 @@
+.layout {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 62px);
+  align-items: center;
+}
+
+.field {
+  @include pageMargin();
+
+  gap: 22px;
+}
+
+.title, .symbol, .description {
+  text-align: center;
+}
+
+.symbol {
+  font-size: 82px;
+  font-weight: 900;
+}
+
+.title {
+  font-size: 80px !important;
+  line-height: 92px !important;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.footer {
+  display: grid;
+  padding: 22px 0;
+  justify-content: center;
+}
+
+.actions {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 12px;
+  @include pageMargin();
+}

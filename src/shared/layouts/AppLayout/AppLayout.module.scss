@@ -1,0 +1,19 @@
+.container, .content > main {
+  width: 100%;
+}
+
+.container > main {
+  min-height: calc(100vh - 170px);
+  padding-top: 2rem;
+
+  @include respond-to(mobile) {
+    min-height: calc(100vh - 88px);
+    padding-top: 1rem;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
